@@ -1,4 +1,3 @@
-// app/authors/[slug]/page.tsx
 import { notFound } from 'next/navigation'
 import { getAuthor, getPostsByAuthor } from '@/lib/cosmic'
 import type { Metadata } from 'next'
@@ -22,7 +21,7 @@ export async function generateMetadata({ params }: AuthorPageProps): Promise<Met
 
   return {
     title: `${author.metadata.name} - Author`,
-    description: author.metadata.bio || `Read posts by ${author.metadata.name}`,
+    description: author.metadata.bio || `Posts by ${author.metadata.name}`,
   }
 }
 
@@ -42,55 +41,62 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
       {/* Author Header */}
       <section className="bg-gradient-to-br from-purple-600 via-purple-700 to-blue-600 text-white py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row items-center gap-8">
+          <div className="text-center">
+            <div className="inline-block px-4 py-2 bg-white/20 rounded-full text-sm font-medium mb-6">
+              Author
+            </div>
+            
+            {/* Author Avatar */}
             {author.metadata.avatar && (
-              <img
-                src={`${author.metadata.avatar.imgix_url}?w=200&h=200&fit=crop&auto=format,compress`}
-                alt={author.metadata.name}
-                className="w-32 h-32 rounded-full object-cover border-4 border-white/20"
-              />
-            )}
-            <div className="text-center md:text-left">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                {author.metadata.name}
-              </h1>
-              {author.metadata.bio && (
-                <p className="text-xl text-purple-100 leading-relaxed max-w-2xl">
-                  {author.metadata.bio}
-                </p>
-              )}
-              
-              {/* Social Links */}
-              <div className="flex justify-center md:justify-start gap-4 mt-6">
-                {author.metadata.twitter && (
-                  <a
-                    href={`https://twitter.com/${author.metadata.twitter}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg transition-colors duration-200"
-                  >
-                    Twitter
-                  </a>
-                )}
-                {author.metadata.linkedin && (
-                  <a
-                    href={author.metadata.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg transition-colors duration-200"
-                  >
-                    LinkedIn
-                  </a>
-                )}
-                {author.metadata.email && (
-                  <a
-                    href={`mailto:${author.metadata.email}`}
-                    className="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg transition-colors duration-200"
-                  >
-                    Email
-                  </a>
-                )}
+              <div className="mb-6">
+                <img
+                  src={`${author.metadata.avatar.imgix_url}?w=200&h=200&fit=crop&auto=format,compress`}
+                  alt={author.metadata.name}
+                  className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover mx-auto border-4 border-white/20 shadow-xl"
+                />
               </div>
+            )}
+            
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              {author.metadata.name}
+            </h1>
+            
+            {author.metadata.bio && (
+              <p className="text-xl leading-relaxed max-w-2xl mx-auto opacity-90 mb-8">
+                {author.metadata.bio}
+              </p>
+            )}
+
+            {/* Social Links */}
+            <div className="flex justify-center gap-4">
+              {author.metadata.twitter && (
+                <a
+                  href={`https://twitter.com/${author.metadata.twitter}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
+                >
+                  Twitter
+                </a>
+              )}
+              {author.metadata.linkedin && (
+                <a
+                  href={author.metadata.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
+                >
+                  LinkedIn
+                </a>
+              )}
+              {author.metadata.email && (
+                <a
+                  href={`mailto:${author.metadata.email}`}
+                  className="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200"
+                >
+                  Email
+                </a>
+              )}
             </div>
           </div>
         </div>
