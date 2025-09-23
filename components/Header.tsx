@@ -80,6 +80,12 @@ export default function Header() {
               >
                 Authors
               </Link>
+              <Link 
+                href="/about" 
+                className="text-gray-700 hover:text-purple-600 font-medium transition-colors duration-200"
+              >
+                About
+              </Link>
             </div>
 
             {/* Mobile menu button */}
@@ -178,6 +184,17 @@ export default function Header() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
               </svg>
               <span>Authors</span>
+            </Link>
+
+            <Link
+              href="/about"
+              onClick={closeMobileMenu}
+              className="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:text-purple-600 hover:bg-purple-50 rounded-lg font-medium transition-all duration-200 group"
+            >
+              <svg className="w-5 h-5 text-gray-400 group-hover:text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>About</span>
             </Link>
           </nav>
 

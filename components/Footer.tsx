@@ -40,6 +40,11 @@ export default function Footer() {
                   Authors
                 </Link>
               </li>
+              <li>
+                <Link href="/about" className="text-gray-400 hover:text-white transition-colors duration-200">
+                  About
+                </Link>
+              </li>
             </ul>
           </div>
 
