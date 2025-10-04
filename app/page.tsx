@@ -19,7 +19,7 @@ export default async function HomePage() {
       <section className="bg-gradient-to-br from-purple-600 via-purple-700 to-blue-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">
               Welcome to Our Blog
             </h1>
             <p className="text-xl md:text-2xl text-purple-100 max-w-3xl mx-auto mb-8">
