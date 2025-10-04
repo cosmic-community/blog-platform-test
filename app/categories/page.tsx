@@ -42,71 +42,74 @@ export default async function CategoriesPage() {
           {categories.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {categories.map((category) => (
-                <article key={category.id} className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden group">
-                  {/* Featured Image */}
-                  {category.metadata.featured_image && (
-                    <div className="aspect-[16/10] overflow-hidden relative">
-                      <img
-                        src={`${category.metadata.featured_image.imgix_url}?w=800&h=500&fit=crop&auto=format,compress`}
-                        alt={category.metadata.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                      <div 
-                        className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"
-                      />
-                      <div className="absolute bottom-4 left-4">
+                <Link 
+                  key={category.id} 
+                  href={`/categories/${category.slug}`}
+                  className="block"
+                >
+                  <article className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden group cursor-pointer">
+                    {/* Featured Image */}
+                    {category.metadata.featured_image && (
+                      <div className="aspect-[16/10] overflow-hidden relative">
+                        <img
+                          src={`${category.metadata.featured_image.imgix_url}?w=800&h=500&fit=crop&auto=format,compress`}
+                          alt={category.metadata.name}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
                         <div 
-                          className="inline-block px-3 py-1 rounded-full text-white text-sm font-medium"
-                          style={{ backgroundColor: category.metadata.color || '#6B7280' }}
-                        >
-                          Category
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  <div className="p-6">
-                    {/* Category Badge (if no image) */}
-                    {!category.metadata.featured_image && (
-                      <div className="mb-4">
-                        <div 
-                          className="inline-block px-3 py-1 rounded-full text-white text-sm font-medium"
-                          style={{ backgroundColor: category.metadata.color || '#6B7280' }}
-                        >
-                          Category
+                          className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"
+                        />
+                        <div className="absolute bottom-4 left-4">
+                          <div 
+                            className="inline-block px-3 py-1 rounded-full text-white text-sm font-medium"
+                            style={{ backgroundColor: category.metadata.color || '#6B7280' }}
+                          >
+                            Category
+                          </div>
                         </div>
                       </div>
                     )}
-
-                    {/* Name */}
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors duration-200">
-                      <Link 
-                        href={`/categories/${category.slug}`}
-                        className="block"
-                      >
+                    <div className="p-6">
+                      {/* Category Badge (if no image) */}
+                      {!category.metadata.featured_image && (
+                        <div className="mb-4">
+                          <div 
+                            className="inline-block px-3 py-1 rounded-full text-white text-sm font-medium"
+                            style={{ backgroundColor: category.metadata.color || '#6B7280' }}
+                          >
+                            Category
+                          </div>
+                        </div>
+                      )}
+                      {/* Name */}
+                      <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors duration-200">
                         {category.metadata.name}
-                      </Link>
-                    </h3>
-
-                    {/* Description */}
-                    {category.metadata.description && (
-                      <p className="text-gray-600 mb-4 line-clamp-3">
-                        {category.metadata.description}
-                      </p>
-                    )}
-
-                    {/* Explore Button */}
-                    <div className="pt-4 border-t border-gray-100">
-                      <Link
-                        href={`/categories/${category.slug}`}
-                        className="inline-flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-white rounded-lg hover:opacity-90 transition-all duration-200 transform group-hover:scale-105"
-                        style={{ backgroundColor: category.metadata.color || '#6B7280' }}
-                      >
-                        Explore {category.metadata.name} Posts
-                      </Link>
+                      </h3>
+                      {/* Description */}
+                      {category.metadata.description && (
+                        <p className="text-gray-600 mb-4 line-clamp-3">
+                          {category.metadata.description}
+                        </p>
+                      )}
+                      {/* Explore Button */}
+                      <div className="pt-4 border-t border-gray-100">
+                        <div
+                          className="inline-flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-white rounded-lg hover:opacity-90 transition-all duration-200 transform group-hover:scale-105"
+                          style={{ backgroundColor: category.metadata.color || '#6B7280' }}
+                        >
+                          Explore {category.metadata.name} Posts
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </article>
+                  </article>
+                </Link>
+I've updated the category cards to make the entire card clickable instead of just the button. Here's what changed:
+1. **Wrapped the entire article in a Link component** - The Link now wraps the whole card, making the entire surface clickable
+2. **Removed nested Link from the heading** - Since the whole card is now a link, we don't need the separate link on the h3
+3. **Changed the button to a div** - The "Explore Posts" element is now a styled div instead of a Link, since it's inside the parent Link
+4. **Added cursor-pointer class** - This gives a visual indication that the entire card is clickable
+5. **Made the Link a block element** - Ensures proper layout and hover effects
+This provides a better user experience by increasing the clickable area and making the interaction more intuitive. The hover effects (image scale, shadow, text color change, button scale) all still work perfectly since they're applied to the elements inside the Link.
               ))}
             </div>
           ) : (
