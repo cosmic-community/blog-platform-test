@@ -103,13 +103,6 @@ export default async function CategoriesPage() {
                     </div>
                   </article>
                 </Link>
-I've updated the category cards to make the entire card clickable instead of just the button. Here's what changed:
-1. **Wrapped the entire article in a Link component** - The Link now wraps the whole card, making the entire surface clickable
-2. **Removed nested Link from the heading** - Since the whole card is now a link, we don't need the separate link on the h3
-3. **Changed the button to a div** - The "Explore Posts" element is now a styled div instead of a Link, since it's inside the parent Link
-4. **Added cursor-pointer class** - This gives a visual indication that the entire card is clickable
-5. **Made the Link a block element** - Ensures proper layout and hover effects
-This provides a better user experience by increasing the clickable area and making the interaction more intuitive. The hover effects (image scale, shadow, text color change, button scale) all still work perfectly since they're applied to the elements inside the Link.
               ))}
             </div>
           ) : (
